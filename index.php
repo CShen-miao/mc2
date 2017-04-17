@@ -5,10 +5,9 @@
  * 2.加载函数库
  * 3.启动框架
  */
-
-define('MC',realpath(' /')); #当前文件绝对路径
-define('CORE',MC.'core');
-define('APP',MC.'app');
+define('MC',realpath('./')); #当前文件绝对路径
+define('CORE',MC.'/core');
+define('APP',MC.'/app');
 
 define('DEBUG',true);
 
@@ -19,7 +18,10 @@ if(DEBUG) {
 }
 
 include CORE.'/common/function.php';
-p('123');
-#include CORE.'/start.php';
 
-#\core\start::run();
+include CORE.'/start.php';
+
+spl_autoload_register('\core\start::load'); #触发自动加载函数
+
+\core\start::run();  #静态方法不需要被实例化
+
