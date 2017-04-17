@@ -10,8 +10,8 @@ class start
     public static $classMap = array();
     static public function run()
     {
-        p('ok');
         $route = new \core\lib\route(); #实例化一个不存在的类会调用自动加载函数
+        p($route);
     }
 
     static public function load($class)
