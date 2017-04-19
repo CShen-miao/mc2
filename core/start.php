@@ -8,6 +8,7 @@ namespace core;
 class start
 {
     public static $classMap = array();
+    public $assign;
     static public function run()
     {
         $route = new \core\lib\route(); #实例化一个不存在的类会调用自动加载函数
@@ -39,6 +40,21 @@ class start
             } else {
                 return false;
             }
+        }
+    }
+
+    public function assign($name,$value)
+    {
+        $this->assign[$name] = $value;
+
+    }
+    public function display($file)
+    {
+        $file = APP.'/view/'.$file;
+        p($file);
+        if(is_file($file)) {
+            extract($this->assign);//打散为数组，将每个键值变成单独的变量
+            include $file;
         }
     }
 }
