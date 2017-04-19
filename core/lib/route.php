@@ -17,26 +17,29 @@ class route
         if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/') {
         	$path = $_SERVER['REQUEST_URI'];
         	$patharr = explode('/',trim($path,'/'));
-        	if(isset($patharr[0])) {
-        		$this->ctrl = $patharr[0];
+            p($patharr);
+        	//路径这里有点问题
+            if(isset($patharr[2])) {
+        		$this->ctrl = $patharr[2];
         		unset($patharr[0]);
+                unset($patharr[1]);
+                unset($patharr[2]);
         	}
-        	if(isset($patharr[1])) {
-        		$this->action = $patharr[1];
-        		unset($patharr[1]);
+        	if(isset($patharr[3])) {
+        		$this->action = $patharr[3];
+        		unset($patharr[3]);
         	} else {
         		$this->action = 'index';
         	}
         	//url 多余部分转换成 GET
-			$count = count($patharr) + 2;
-			$i = 2;
+			$count = count($patharr) + 4;
+			$i = 4;
 			while($i < $count) {
 				if(isset($patharr[$i + 1])) {
 				    $_GET[$patharr[$i]] = $patharr[$i + 1];
 			    }
 				$i+=2;
 			}
-			p($_GET);
         } else {
         	$this->ctrl = 'index';
         	$this->action = 'index';

@@ -8,6 +8,7 @@
 define('MC',realpath('./')); #当前文件绝对路径
 define('CORE',MC.'/core');
 define('APP',MC.'/app');
+define('MODULE','app'); #定义模块
 
 define('DEBUG',true);
 
