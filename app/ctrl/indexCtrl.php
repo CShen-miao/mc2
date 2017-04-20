@@ -4,7 +4,9 @@ namespace app\ctrl;
 class indexCtrl extends \core\start
 {
     public function index()
-    { 
+    {
+    	$temp = \core\lib\conf::get('CTRL','route');
+    	print_r($temp);
     	$title = '视图文件';
     	$data = 'hello world';
     	$this->assign('title',$title);
